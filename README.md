@@ -1,6 +1,6 @@
-# Calculadora Simples em React
+# Calculadora React
 
-Este é um projeto de uma calculadora web simples desenvolvida usando a framework React. A calculadora possui quatro botões para operações matemáticas básicas (adição, subtração, multiplicação e divisão) e permite que o usuário insira números por meio de inputs. É um ótimo exemplo para quem está começando a aprender React e deseja construir uma aplicação web interativa.
+Este é um projeto de uma calculadora web simples desenvolvida usando a framework React. A calculadora possui quatro botões para operações matemáticas básicas (adição, subtração, multiplicação e divisão) e permite que o usuário insira números por meio de inputs.
 <br><br>
 
 ### Funcionalidades
@@ -12,23 +12,16 @@ Este é um projeto de uma calculadora web simples desenvolvida usando a framewor
 - **Interface Simples**: O design minimalista torna a calculadora fácil de usar e entender.
 <br><br>
 
-### Tecnologias Utilizadas
-
-- React: A framework JavaScript utilizada para construir a aplicação.
-- JavaScript: A linguagem de programação que alimenta a lógica da calculadora.
-- HTML/CSS: Para a estrutura e estilização da interface de usuário.
-<br><br>
-
 ## Como Usar
 
-1. Clone este repositório para o seu ambiente local usando o seguinte comando:
+1. Clone este repositório para o seu ambiente local:
 
    ```bash
    git clone https://github.com/Matheus-Gabriel07/Calculator-react.git
 2. Navegue até a pasta do projeto:
 
    ```bash
-   cd react-simple-calculator
+   cd Calculator-react
 4. Instale as dependências:
    
    ```bash
