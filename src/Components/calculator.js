@@ -56,7 +56,7 @@ export default function calculator() {
         </Button>
       </div>
       <Results result={result} />
-      <button onClick={reset}>CE</button>
+      <button onClick={reset} className="button-reset">CE</button>
     </div>
   );
 }
