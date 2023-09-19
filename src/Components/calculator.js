@@ -1,163 +1,62 @@
 import React, { useState } from "react";
-import "./calculator.css";
+import Button from "./Button";
+import Results from "Results.jsx"
+import "calculator.css";
 
-export default function Calculator() {
-  const [values, setValues] = useState({
-    inp1: "",
-    inp2: "",
-    result: 0,
-    symbol: "+",
-    counter: 0,
-    reset: true,
-  });
+export default function calculator() {
+  const [inputValue1, setInputValue1] = useState(0);
+  const [inputValue2, setInputValue2] = useState(0);
 
-  const { inp1, inp2, result, symbol, counter, reset } = values;
-
-  const onSubmit = (sym) => () => {
-    switch (sym) {
-      case "+":
-        setValues({
-          ...values,
-          symbol: "+",
-          result: inp1 + inp2,
-          counter: counter + 1,
-          reset: false,
-        });
-        break;
-
-      case "-":
-        setValues({
-          ...values,
-          symbol: "-",
-          result: inp1 - inp2,
-          counter: counter + 1,
-          reset: false,
-        });
-        break;
-
-      case "*":
-        setValues({
-          ...values,
-          symbol: "*",
-          result: inp1 * inp2,
-          counter: counter + 1,
-          reset: false,
-        });
-        break;
-
-      case "/":
-        setValues({
-          ...values,
-          symbol: "/",
-          result: Math.round((inp1 / inp2) * 100) / 100,
-          counter: counter + 1,
-          reset: false,
-        });
-        break;
-        
-      default:
-        onReset();
-    }
+  /**
+   * @param {Function} inputChange - função de manipulação de eventos
+   *  que convertem os valores dos campos de entrada em números de
+   *  ponto flutuante e atualizam as variáveis de estado
+   *  correspondentes. */
+  const inputChange1 = (e) => {
+    setInputValue1(parseFloat(e.target.value));
   };
 
-  const onReset = () => {
-    setValues({
-      ...values,
-      reset: true,
-      inp1: "",
-      inp2: "",
-      symbol: "+",
-    });
+  const inputChange2 = (e) => {
+    setInputValue2(parseFloat(e.target.value));
   };
 
-  const handleChange = (name) => (event) => {
-    setValues({ ...values, [name]: parseInt(event.target.value) });
+  const reset = () => {
+    setInputValue1(0);
+    setInputValue2(0);
+    setResult(null);
   };
 
   return (
-    <div className="layout-column align-items-center">
-      <div data-testid="total-operations" className="pt-50 total-operations">
-        Histórico: {counter}
-        <p style={{ opacity: reset ? "0" : "" }}></p>
+    <div className="calculator">
+      <div className="calculator-input-container">
+      <input
+        className="calculator-inputs"
+        value={inputValue1}
+        onChange={inputChange1}
+      ></input>
+      <input
+        className="calculator-inputs"
+        value={inputValue2}
+        onChange={inputChange2}
+      ></input>
       </div>
-      <div className="card">
-        <section className="card-text">
-          <div className="layout-row justify-content-around align-items-center mt-40">
-            <input
-              type="number"
-              className="ml-3 mr-3"
-              onChange={handleChange("inp1")}
-              value={inp1}
-              autoComplete="off"
-              placeholder="Ex: 1"
-              name="input1"
-            />
-            <label
-              className="ml-2 mr-2 symbol text-center"
-              data-testid="selected-operator"
-            >
-              {symbol}
-            </label>
-            <input
-              type="number"
-              onChange={handleChange("inp2")}
-              value={inp2}
-              autoComplete="off"
-              className="ml-3 mr-3"
-              placeholder="Ex: 2"
-            />
-          </div>
-          <div className="layout-row justify-content-around mt-30">
-            <button
-              onClick={onSubmit("+")}
-              className="operationFont"
-              type="submit"
-            >
-              +
-            </button>
-            <button
-              onClick={onSubmit("-")}
-              className="operationFont"
-              type="submit"
-            >
-              -
-            </button>
-            <button
-              onClick={onSubmit("*")}
-              className="operationFont"
-              type="submit"
-            >
-              *
-            </button>
-            <button
-              onClick={onSubmit("/")}
-              className="operationFont"
-              type="submit"
-            >
-              /
-            </button>
-          </div>
-          <div className="layout-row justify-content-between align-items-center mt-30">
-            <button
-              onClick={onReset}
-              type="reset"
-              className="outline danger"
-            >
-              AC
-            </button>
-            {!reset && (
-              <div className="layout-row justify-content-center align-items-center result-container">
-                <div
-                  data-testid="result"
-                  className="result-value ma-0 slide-up-fade-in"
-                  style={{ display: reset ? "none" : "" }}
-                >{result}
-                </div>
-              </div>
-            )}
-          </div>
-        </section>
+
+      <div className="calculator-button-container">
+        <Button operation="+" input1={inputValue1} input2={inputValue2}>
+          +
+        </Button>
+        <Button operation="-" input1={inputValue1} input2={inputValue2}>
+          -
+        </Button>
+        <Button operation="*" input1={inputValue1} input2={inputValue2}>
+          x
+        </Button>
+        <Button operation="/" input1={inputValue1} input2={inputValue2}>
+          /
+        </Button>
       </div>
+      <Results result={result} />
+      <button onClick={reset}>CE</button>
     </div>
   );
 }
