@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import Button from "./Button";
-import Results from "Results.jsx"
-import "calculator.css";
+import Results from "./Results.jsx";
+import "./Calculator.css";
 
-export default function calculator() {
+export default function Calculator() {
   const [inputValue1, setInputValue1] = useState(0);
   const [inputValue2, setInputValue2] = useState(0);
+  const [result, setResult] = useState(null);
 
   /**
-   * @param {Function} inputChange - função de manipulação de eventos
-   *  que convertem os valores dos campos de entrada em números de
-   *  ponto flutuante e atualizam as variáveis de estado
-   *  correspondentes. */
+   * @param {Object} e - O evento de mudança de entrada.
+   * Função de manipulação de eventos que converte os valores dos campos de entrada em números de ponto flutuante
+   * e atualiza as variáveis de estado correspondentes.
+   */
   const inputChange1 = (e) => {
     setInputValue1(parseFloat(e.target.value));
   };
@@ -29,16 +30,16 @@ export default function calculator() {
   return (
     <div className="calculator">
       <div className="calculator-input-container">
-      <input
-        className="calculator-inputs"
-        value={inputValue1}
-        onChange={inputChange1}
-      ></input>
-      <input
-        className="calculator-inputs"
-        value={inputValue2}
-        onChange={inputChange2}
-      ></input>
+        <input
+          className="calculator-inputs"
+          value={inputValue1}
+          onChange={inputChange1}
+        ></input>
+        <input
+          className="calculator-inputs"
+          value={inputValue2}
+          onChange={inputChange2}
+        ></input>
       </div>
 
       <div className="calculator-button-container">
@@ -56,7 +57,9 @@ export default function calculator() {
         </Button>
       </div>
       <Results result={result} />
-      <button onClick={reset} className="button-reset">CE</button>
+      <button onClick={reset} className="button-reset">
+        CE
+      </button>
     </div>
   );
 }

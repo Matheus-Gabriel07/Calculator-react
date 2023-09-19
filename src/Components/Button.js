@@ -1,5 +1,5 @@
 import React from "react";
-import "button.css";
+import "./Button.css";
 
 export default function button() {
 
@@ -9,7 +9,7 @@ export default function button() {
    *  e na operação especificada, em seguida, define o resultado
    *  usando a função setResult que é passada como uma prop.
    */
-  const onSubmit = () => {
+  const onSubmit = (props) => {
     const { input1, input2, operation, setResult } = props;
 
     let operationResult;
@@ -51,9 +51,7 @@ export default function button() {
 
   return (
     <div className="button">
-      <button onClick={onSubmit} className="button-operation">
-        {props.type}
-      </button>
+      <button onClick={onSubmit} className="button-operation"></button>
     </div>
   );
 }
