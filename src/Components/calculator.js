@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "./Button";
 import Results from "./Results.jsx";
-import "./Calculator.css";
+import "./calculator.css";
 
 export default function Calculator() {
   const [inputValue1, setInputValue1] = useState(0);

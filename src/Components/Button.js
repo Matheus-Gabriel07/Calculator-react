@@ -1,5 +1,5 @@
 import React from "react";
-import "./Button.css";
+import "./button.css";
 
 export default function Button(props) {
   const { input1, input2, operation, setResult } = props;
