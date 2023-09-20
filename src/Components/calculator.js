@@ -14,17 +14,27 @@ export default function Calculator() {
    * e atualiza as variáveis de estado correspondentes.
    */
   const inputChange1 = (e) => {
-    setInputValue1(parseFloat(e.target.value));
+    const newValue = parseFloat(e.target.value);
+    if (!isNaN(newValue)) {
+      setInputValue1(newValue);
+    } else {
+      setInputValue1("");
+    }
   };
 
   const inputChange2 = (e) => {
-    setInputValue2(parseFloat(e.target.value));
+    const newValue = parseFloat(e.target.value);
+    if (!isNaN(newValue)) {
+      setInputValue2(newValue);
+    } else {
+      setInputValue2("");
+    }
   };
 
   const reset = () => {
     setInputValue1(0);
     setInputValue2(0);
-    setResult(null);
+    setResult(0);
   };
 
   return (
@@ -43,23 +53,45 @@ export default function Calculator() {
       </div>
 
       <div className="calculator-button-container">
-        <Button operation="+" input1={inputValue1} input2={inputValue2}>
+        <Button
+          operation="+"
+          input1={inputValue1}
+          input2={inputValue2}
+          setResult={setResult}
+        >
           +
         </Button>
-        <Button operation="-" input1={inputValue1} input2={inputValue2}>
+        <Button
+          operation="-"
+          input1={inputValue1}
+          input2={inputValue2}
+          setResult={setResult}
+        >
           -
         </Button>
-        <Button operation="*" input1={inputValue1} input2={inputValue2}>
+        <Button
+          operation="x"
+          input1={inputValue1}
+          input2={inputValue2}
+          setResult={setResult}
+        >
           x
         </Button>
-        <Button operation="/" input1={inputValue1} input2={inputValue2}>
+        <Button
+          operation="/"
+          input1={inputValue1}
+          input2={inputValue2}
+          setResult={setResult}
+        >
           /
         </Button>
       </div>
-      <Results result={result} />
-      <button onClick={reset} className="button-reset">
-        CE
-      </button>
+      <div className="details-container">
+        <Results result={result} />
+        <button onClick={reset} className="button-reset">
+          CE
+        </button>
+      </div>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import React from "react";
 export default function Results({ result }) {
   return (
     <div className="result">
-      {result !== null && <p> {result} </p>}
+      <p>{result !== null ? result : "0"}</p>
     </div>
   );
 }

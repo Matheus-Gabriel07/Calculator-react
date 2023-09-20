@@ -1,17 +1,15 @@
 import React from "react";
 import "./Button.css";
 
-export default function button() {
+export default function Button(props) {
+  const { input1, input2, operation, setResult } = props;
 
   /**
-   * @param {Function} onSubmit -  função que executa operações
-   *  matemáticas com base nos valores de entrada input1 e input2
-   *  e na operação especificada, em seguida, define o resultado
-   *  usando a função setResult que é passada como uma prop.
+   * Função que executa operações matemáticas com base nos valores de entrada input1 e input2
+   * e na operação especificada, em seguida, define o resultado
+   * usando a função setResult que é passada como uma prop.
    */
-  const onSubmit = (props) => {
-    const { input1, input2, operation, setResult } = props;
-
+  const onSubmit = () => {
     let operationResult;
     switch (operation) {
       case "+":
@@ -22,36 +20,32 @@ export default function button() {
         operationResult = input1 - input2;
         break;
 
-      case "*":
+      case "x":
         operationResult = input1 * input2;
         break;
 
       case "/":
         if (input2 === 0) {
-          alert("Não é possivel dividir por zero");
+          alert("Não é possível dividir por zero");
           return;
         }
         operationResult = input1 / input2;
         break;
 
       default:
-        alert("Operação Invalida.");
+        alert("Operação Inválida.");
         return;
     }
 
-    /**
-     * @param {Function} setResult - referência à função passada como 
-     * propriedade (props) para o componente. Ela é usada para definir
-     * o resultado de uma operação matemática.
-     * 
-     * @param {number} operationResult - O resultado da operação matemática
-     */
+    // Define o resultado usando a função setResult passada como prop.
     setResult(operationResult);
   };
 
   return (
     <div className="button">
-      <button onClick={onSubmit} className="button-operation"></button>
+      <button onClick={onSubmit} className="button-operation">
+        {operation}
+      </button>
     </div>
   );
 }
